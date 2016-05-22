@@ -1,0 +1,14 @@
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.DalContracts.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.DalContracts.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.Entities.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.Entities.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\obj\Debug\Task6.DalContracts.csprojResolveAssemblyReference.cache
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\obj\Debug\Task6.DalContracts.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.DalContracts\obj\Debug\Task6.DalContracts.pdb
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.DalContracts.dll
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.DalContracts.pdb
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.Entities.dll
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\bin\Debug\Task6.Entities.pdb
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\obj\Debug\Task6.DalContracts.csprojResolveAssemblyReference.cache
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\obj\Debug\Task6.DalContracts.dll
+j:\EPAM_Edu\Projects\Task6\Task6.DalContracts\obj\Debug\Task6.DalContracts.pdb

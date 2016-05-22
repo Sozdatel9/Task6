@@ -1,0 +1,34 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+
+@if (!User.IsInRole("admin"))
+{
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+@{
+    Page.Title = "Delete awards";
+    Page.Description = "Delete selected award";
+    UserLogic userLogic = new UserLogic();
+    AwardLogic awardLogic = new AwardLogic();
+    awardLogic.uLogic = userLogic;
+
+    if (IsPost)
+    {
+        var awardId = Request["id"];
+        if (string.IsNullOrWhiteSpace(awardId))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+
+        awardLogic.Delete(int.Parse(awardId));
+        Response.Redirect("~/Pages/Awards/");
+        return;
+    }
+}

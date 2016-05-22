@@ -1,0 +1,110 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@{
+    if (!User.Identity.IsAuthenticated)
+    {
+        Response.SetStatus(HttpStatusCode.Unauthorized);
+        return;
+    }
+}
+@{
+    Page.Title = "Edit account " + User.Identity.Name;
+    Page.Description = "Edit account " + User.Identity.Name;
+    AccountLogic accountLogic = new AccountLogic();
+    IEnumerable<Account> Accounts = accountLogic.GetAll();
+
+    if (IsPost)
+    {
+        var userName = Request["name"];
+        var Id = Request["id"];
+        var userPassword = Request["password"];
+        var userPassword2 = Request["password2"];
+        if (string.IsNullOrWhiteSpace(userName) || (userPassword != userPassword2))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+        accountLogic.Update(Id, userName, userPassword);
+        Response.Redirect("~/");
+        return;
+    }
+}
+
+<h3 class="header-default"> Edit account  &quot;@User.Identity.Name&quot;</h3>
+
+<form action="~/Pages/Accounts/Index" method="post">
+    <label for="name">
+        <span class="text-default">Name (or nickname):</span>
+        <input name="name" value="@User.Identity.Name" />
+    </label>
+    <input name="id" value="@accountLogic.getIdByUserName(User.Identity.Name)" type="hidden" />
+    <div>&nbsp;</div>
+    <label for="password">
+        <span class="text-default">New Password:</span>
+        <input name="password" value="" type="password" />
+    </label>
+    <div>&nbsp;</div>
+    <label for="password">
+        <span class="text-default">New Password (again):</span>
+        <input name="password2" value="" type="password" />
+    </label>
+    <div>&nbsp;</div>
+    <button type="submit" class="btn btn-primary">
+        Save changes
+    </button>
+</form>
+<br />
+
+@if (User.IsInRole("admin"))
+{
+    <table class="table table-default">
+        <tr>
+            <td colspan=4 class="title title-default">
+                Accounts List
+            </td>
+        </tr>
+        <tr class="table-top">
+            <td>Id</td>
+            <td>Name</td>
+            <td colspan=2 align="center">Permissions</td>    
+        </tr>
+        @foreach (var account in Accounts)
+        {
+            if ((account.Name != User.Identity.Name) && (account.Id != 1))
+            {
+                <tr>
+                    <td>
+                        <a name="Id-@account.Id">
+                            @account.Id
+                        </a>
+                    </td>
+                    <td>@account.Name</td>
+                    <td>@account.Permissions</td>
+                    @if (account.Permissions != "admin") { 
+                    <td align="center">
+                        <form action="~/Pages/Accounts/GivePermissions" method="post">
+                            <input type="hidden" name="id" value="@account.Id" />
+                            <button type="submit" class="btn btn-success btn-sm">
+                                <i class="glyphicon glyphicon-gift"></i>
+                                Give admin rights
+                            </button>
+                        </form>
+                    </td>
+                    }
+                    else { 
+                    <td align="center">
+                        <form action="~/Pages/Accounts/DeprivePermissions" method="post">
+                            <input type="hidden" name="id" value="@account.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                Deprive admin rights
+                            </button>
+                        </form>
+                    </td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+    <br />
+}

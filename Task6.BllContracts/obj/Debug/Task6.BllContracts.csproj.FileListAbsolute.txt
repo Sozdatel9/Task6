@@ -1,0 +1,11 @@
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.BllContracts.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.BllContracts.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.DalContracts.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.Entities.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.XMLDal.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.DalContracts.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.Entities.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\bin\Debug\Task6.XMLDal.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\obj\Debug\Task6.BllContracts.csprojResolveAssemblyReference.cache
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\obj\Debug\Task6.BllContracts.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.BllContracts\obj\Debug\Task6.BllContracts.pdb

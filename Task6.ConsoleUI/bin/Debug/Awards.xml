@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<awards>
+  <award ID="1">
+    <title>Медаль за отвагу</title>
+  </award>
+  <award ID="2">
+    <title>Герой России</title>
+  </award>
+  <award ID="3">
+    <title>Орден Святого Георгия</title>
+  </award>
+  <award ID="5">
+    <title>jljkl</title>
+  </award>
+  <award ID="6">
+    <title>Медаль КРЫМНАШ</title>
+  </award>
+  <award ID="7">
+    <title>Герой ДНР</title>
+  </award>
+</awards>

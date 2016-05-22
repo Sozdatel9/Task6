@@ -1,0 +1,10 @@
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.Entities\bin\Debug\Task6.Entities.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.Entities\bin\Debug\Task6.Entities.pdb
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.Entities\obj\Debug\Task6.Entities.csprojResolveAssemblyReference.cache
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.Entities\obj\Debug\Task6.Entities.dll
+C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.Entities\obj\Debug\Task6.Entities.pdb
+j:\EPAM_Edu\Projects\Task6\Task6.Entities\bin\Debug\Task6.Entities.dll
+j:\EPAM_Edu\Projects\Task6\Task6.Entities\bin\Debug\Task6.Entities.pdb
+j:\EPAM_Edu\Projects\Task6\Task6.Entities\obj\Debug\Task6.Entities.csprojResolveAssemblyReference.cache
+j:\EPAM_Edu\Projects\Task6\Task6.Entities\obj\Debug\Task6.Entities.dll
+j:\EPAM_Edu\Projects\Task6\Task6.Entities\obj\Debug\Task6.Entities.pdb

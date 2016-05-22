@@ -1,0 +1,67 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+@if (!User.IsInRole("admin"))
+{ 
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+@{
+    Page.Title = "Add awards";
+    Page.Description = "Add new award";
+    UserLogic userLogic = new UserLogic();
+    AwardLogic awardLogic = new AwardLogic();
+    awardLogic.uLogic = userLogic;
+
+    if (IsPost)
+    {
+        var awardTitle = Request["title"];
+        var img = Request.Files["uploaded"];
+        int newId = 0;
+        if (string.IsNullOrWhiteSpace(awardTitle))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+        byte[] imageContent = new byte[img.ContentLength];
+        img.InputStream.Read(imageContent, 0, imageContent.Length);
+        var newImg = new ImageFile
+        {
+            Content = imageContent,
+            ContentType = img.ContentType,
+            FileName = img.FileName,
+        };
+
+        if (string.IsNullOrEmpty(img.FileName))
+        {
+            newId = awardLogic.Add(awardTitle);
+        }
+        else
+        {
+            newId = awardLogic.Add(awardTitle, newImg);
+        }
+
+        Response.Redirect("~/Pages/Awards/#Id-" + newId + "");
+        return;
+    }
+}
+<h3 class="header-default"> Add new award</h3>
+
+<form action="~/Pages/Awards/Add" method="post" enctype="multipart/form-data">
+    <label for="title">
+        <span class="text-default">Award title:</span>
+        <input name="title" value="" />
+    </label>
+    <div>&nbsp;</div>
+    <input type="file" id="uploaded" name="uploaded" />
+    <div>&nbsp;</div>
+
+    <button type="submit" class="btn btn-primary">
+        Add
+    </button>
+</form>
+<br />

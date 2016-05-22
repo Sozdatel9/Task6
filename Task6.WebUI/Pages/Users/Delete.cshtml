@@ -1,0 +1,34 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+@if (!User.IsInRole("admin"))
+{
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+
+@{
+    Page.Title = "Delete users";
+    Page.Description = "Delete selected user";
+    UserLogic userLogic = new UserLogic();
+    AwardLogic awardLogic = new AwardLogic();
+    awardLogic.uLogic = userLogic;
+
+    if (IsPost)
+    {
+        var userId = Request["id"];
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+
+        userLogic.Delete(int.Parse(userId));
+        Response.Redirect("~/Pages/Users/");
+        return;
+    }
+}

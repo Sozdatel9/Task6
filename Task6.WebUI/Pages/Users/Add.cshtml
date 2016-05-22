@@ -1,0 +1,77 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@using System.Globalization;
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+
+@if (!User.IsInRole("admin"))
+{
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+@{
+    Page.Title = "Add users";
+    Page.Description = "Add new user";
+    UserLogic userLogic = new UserLogic();
+    AwardLogic awardLogic = new AwardLogic();
+    awardLogic.uLogic = userLogic;
+
+    if (IsPost)
+    {
+        var userName = Request["name"];
+        var birthdate = Request["birthdate"];
+        var img = Request.Files["uploaded"];
+        int newId = 0;
+
+        if (string.IsNullOrWhiteSpace(userName))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+        byte[] imageContent = new byte[img.ContentLength];
+        img.InputStream.Read(imageContent, 0, imageContent.Length);
+        var newImg = new ImageFile
+        {
+            Content = imageContent,
+            ContentType = img.ContentType,
+            FileName = img.FileName,
+        };
+        DateTime birthDate = DateTime.Parse(birthdate, new CultureInfo("ru-RU", true));
+
+        if (string.IsNullOrEmpty(img.FileName))
+        {
+            newId = userLogic.Add(userName, birthDate);
+        }
+        else
+        {
+            newId = userLogic.Add(userName, birthDate, newImg);
+
+        }
+        Response.Redirect("~/Pages/Users/#Id-"+newId+"");
+        return;
+    }
+}
+<h3 class="header-default"> Add new user</h3>
+
+<form action="~/Pages/Users/Add" method="post" enctype="multipart/form-data">
+    <label for="name">
+        <span class="text-default">User name:</span>
+        <input name="name" value="" />
+    </label>
+    <div>&nbsp;</div>
+    <label for="birthdate">
+        <span class="text-default">User birthdate:</span>
+        <input name="birthdate" value="" type="date" placeholder="##.##.####" />
+    </label>
+    <div>&nbsp;</div>
+    <input type="file" id="uploaded" name="uploaded" />
+    <div>&nbsp;</div>
+    <button type="submit" class="btn btn-primary">
+        Add
+    </button>
+</form>
+
+<br />

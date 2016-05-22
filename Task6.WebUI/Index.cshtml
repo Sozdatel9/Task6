@@ -1,0 +1,39 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+
+@{
+      Page.Title = "Home";
+      Page.Description = "Home page";
+}
+
+    <div class="welcome">
+    <p>Welcome to the our web-site. </p>
+    <p>Please, select what you want to do ?</p>
+    </div>
+    <ul class="menu menu-default"> 
+        <li class="menu-title">
+            <i class="glyphicon glyphicon-user menu-icon"></i>
+            <span class="">USERS</span>
+        </li>
+        <li>
+            <ol>
+                <li><a href="~/Pages/Users//Add">Add new user</a></li>
+                <li><a href="~/Pages/Users/Index">View all users</a></li>
+                <li><a href="~/Pages/Users/AwardedUsers">View awarded users</a></li>
+
+            </ol>
+        </li>
+        <li>&nbsp;</li>
+        <li class="menu-title">
+            <i class="glyphicon glyphicon-star menu-icon"></i>
+            <span class="menu-title">AWARDS</span>
+        </li>
+        <li>
+            <ol>
+                <li><a href="~/Pages/Awards/Add">Add new award</a></li>
+                <li><a href="~/Pages/Awards/Index">View all awards</a></li>
+                <li><a href="~/Pages/Awards/Give">Give award to user</a></li>
+                <li><a href="~/Pages/Awards/Deprive">Deprive award</a></li>
+            </ol>
+        </li>
+    </ul>

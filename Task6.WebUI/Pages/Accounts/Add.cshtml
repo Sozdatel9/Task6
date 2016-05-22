@@ -1,0 +1,71 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+        return;
+    }
+}
+@{
+    Page.Title = "Add new account";
+    Page.Description = "Add new account";
+    AccountLogic accountLogic = new AccountLogic();
+    MyRoleProvider m = new MyRoleProvider();
+    string[] permissionsList = m.GetAllRoles();
+    if (IsPost)
+    {
+        var userName = Request["name"];
+        var userPassword = Request["password"];
+        var userPassword2 = Request["password2"];
+        var userPermissions = Request["permissions"];
+        if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(userPassword) || (userPassword != userPassword2))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+        accountLogic.Add(userName, userPassword, userPermissions);
+        Response.Redirect("~/Pages/Accounts/Login");
+        return;
+    }
+}
+
+<h3 class="header-default"> Add new user</h3>
+
+<form action="~/Pages/Accounts/Add" method="post">
+    <label for="name">
+        <span class="text-default">Name (or nickname):</span>
+        <input name="name" value="" />
+    </label>
+    <div>&nbsp;</div>
+    <label for="password">
+        <span class="text-default">Password:</span>
+        <input name="password" value="" type="password" />
+    </label>
+    <div>&nbsp;</div>
+    <label for="password">
+        <span class="text-default">Password (again):</span>
+        <input name="password2" value="" type="password" />
+    </label>
+
+    <div>&nbsp;</div>
+    <label for="permissions">
+        <span class="text-default">Permissions:</span>
+        <select size="@permissionsList.Length" name="permissions">
+            @for (int i = 0; i < permissionsList.Length; i++)
+            {
+                if (i == 0)
+                {
+                    <option selected value="@permissionsList[i]">@(char.ToUpper((permissionsList[i])[0]) +(((permissionsList[i]).Length > 1) ? (permissionsList[i]).Substring(1).ToLower() : string.Empty))</option>
+                }
+                else
+                {
+                    <option value="@permissionsList[i]">@(char.ToUpper((permissionsList[i])[0])+(((permissionsList[i]).Length > 1) ? (permissionsList[i]).Substring(1).ToLower() : string.Empty))</option>
+                }
+            }
+        </select>
+    </label>
+    <button type="submit" class="btn btn-primary">
+        Add
+    </button>
+</form>

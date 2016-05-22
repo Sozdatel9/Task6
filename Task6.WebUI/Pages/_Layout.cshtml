@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="@(Page.Description)" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <title>@(Page.Title) :: Task 10</title>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Index">Task 10</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="~/Index">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Users <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="~/Pages/Users/Add">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    Add
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/Pages/Users/Index">
+                                    <i class="glyphicon glyphicon-zoom-out"></i>
+                                    Show All
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="~/Pages/Users/AwardedUsers">
+                                    <i class="glyphicon glyphicon-zoom-out"></i>
+                                    Show awarded users
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="glyphicon glyphicon-star"></i>
+                            Awards <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="~/Pages/Awards/Add">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    Add
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/Pages/Awards/Index">
+                                    <i class="glyphicon glyphicon-zoom-out"></i>
+                                    Show All
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Actions with awards</li>
+                            <li>
+                                <a href="~/Pages/Awards/Give">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    Give award
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/Pages/Awards/Deprive">
+                                    <i class="glyphicon glyphicon-erase"></i>
+                                    Deprive award
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <text> <li> <a href="~/Pages/Accounts/Login">
+                                    <i class="glyphicon glyphicon-log-in"></i>
+                                    Log in
+                                    <span class="sr-only">(current)</span></a></li>
+                                <li><a href="~/Pages/Accounts/Add">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    Registration <span class="sr-only">(current)</span></a></li>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <li><a href="~/Pages/Accounts/">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    @User.Identity.Name   <span class="sr-only">(current)</span></a></li>
+                            <li> <a href="~/Pages/Accounts/Logout">
+                                    <i class="glyphicon glyphicon-log-out"></i>
+                                    Log out   <span class="sr-only">(current)</span></a></li>
+                        </text>
+                    }
+
+                </ul>
+</div></div>  </nav>
+<div class="container container-default">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+
+@if (!User.IsInRole("admin"))
+{
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+@{
+    Page.Title = "Deprive admin rights";
+    Page.Description = "Deprive admin rights a selected acounts";
+    AccountLogic accountLogic = new AccountLogic();
+
+    if (IsPost)
+    {
+        var accountId = Request["id"];
+        if (string.IsNullOrWhiteSpace(accountId))
+        {
+            Response.SetStatus(HttpStatusCode.BadRequest);
+            return;
+        }
+
+        accountLogic.GivePermissions(int.Parse(accountId));
+        Response.Redirect("~/Pages/Accounts/#Id-" + accountId);
+        return;
+    }
+}

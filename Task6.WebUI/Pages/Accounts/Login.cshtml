@@ -1,0 +1,65 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~");
+        return;
+    }
+}
+@{ bool authFailed = false;
+    Page.Title = "Log in";
+    Page.Description = "User authorization page";
+    if (IsPost)
+    {
+        AccountLogic acc = new AccountLogic();
+       
+        var userName = Request["name"];
+        var password = Request["password"];
+
+
+        if (acc.CanLogin(userName, password))
+        {
+            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie: false);
+
+            var returnUrl = Request["ReturnUrl"];
+            if (string.IsNullOrWhiteSpace(returnUrl))
+            {
+                returnUrl = "~";
+            }
+            Response.Redirect(returnUrl);
+            return;
+        }
+        authFailed = true; }
+
+}
+<h3 class="header-default"> Log in</h3>
+
+@if (authFailed)
+{
+    <div class="alert alert-danger">
+        <b>Unable to log in.</b><br>Please check that you have entered your <b>login</b> and <b>password</b> correctly.
+        <br />
+        <ul class="listing">
+            <li><span>Is the <b>Caps Lock</b> safely turned off?</span></li>
+            <li><span>Maybe you are using the wrong <b>input language</b>? (e.g. German vs. English)</span></li>
+            <li><span>Try typing your password in a text editor and <b>pasting</b> it into the "Password" field.</span></li>
+        </ul>      </div>
+    <div>&nbsp;</div>
+}
+
+<form action="~/Pages/Accounts/Login" method="post">
+    <label for="name">
+        <span class="text-default">Name:</span>
+        <input name="name" value="" />
+    </label>
+    <div>&nbsp;</div>
+    <label for="password">
+        <span class="text-default">Password:</span>
+        <input name="password" value="" type="password" />
+    </label>
+    <input type="hidden" name="ReturnUrl" value="@Request["ReturnUrl"]" />
+    <button type="submit" class="btn btn-primary">
+        Login
+    </button>
+</form>

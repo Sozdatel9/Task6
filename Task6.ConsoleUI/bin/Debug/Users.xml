@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <user ID="1">
+    <name>Barack Obama</name>
+    <birthdate>04.08.1961</birthdate>
+    <awards>2,3,5</awards>
+  </user>
+  <user ID="3">
+    <name>Hillary Clinton</name>
+    <birthdate>26.10.1947</birthdate>
+    <awards>3,5,6</awards>
+  </user>
+  <user ID="4">
+    <name>jackie chan</name>
+    <birthdate>01.02.1950</birthdate>
+    <awards>2,6</awards>
+  </user>
+  <user ID="6">
+    <name>judie</name>
+    <birthdate>01.02.1940</birthdate>
+    <awards>3,5,2,6</awards>
+  </user>
+</users>

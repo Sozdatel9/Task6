@@ -1,0 +1,96 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+@if (!User.IsInRole("admin"))
+{
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+@{
+    Page.Title = "Deprive award user";
+    Page.Description = "Deprive award selected user";
+    UserLogic userLogic = new UserLogic();
+    AwardLogic awardLogic = new AwardLogic();
+    awardLogic.uLogic = userLogic;
+    IEnumerable<Award> Awards = awardLogic.GetAll();
+    IEnumerable<User> Users = awardLogic.uLogic.GetAllWithoutAwards();
+    IEnumerable<User> Users2 = awardLogic.uLogic.GetOnlyAwardedUsers();
+    if (IsPost)
+    {
+        int userId = int.Parse(Request["user"]);
+        int awardId = int.Parse(Request["award"]);
+        awardLogic.DepriveAward(awardId, userId);
+        Response.Redirect("~/Pages/Users/");
+        return;
+    }
+}
+<h3 class="header-default"> Deprive award some user</h3>
+
+<form action="~/Pages/Awards/Deprive" method="post">
+    <label for="user">
+        <span class="text-default">User:</span>
+        <select size=10 name="user">
+            @foreach (var user in Users)
+            {
+                <option value="@user.Id">@user.Id) @user.Name  @user.BirthDate.ToShortDateString()</option>
+            }
+        </select>
+    </label>
+    <div>&nbsp;</div>
+    <label for="award">
+        <span class="text-default">Award:</span>
+        <select size=10 name="award">
+            @foreach (var award in Awards)
+            {
+                <option value="@award.Id">@award.Id) @award.Title</option>
+            }
+        </select>
+    </label>
+    <button type="submit" class="btn btn-primary">
+        Deprive
+    </button>
+</form>
+<br />
+
+<table class="table table-default">
+    <tr>
+        <td colspan=6 class="title title-default">
+            Awarded Users List
+        </td>
+    </tr>
+    <tr class="table-top">
+        <td>Id</td>
+        <td>Name</td>
+        <td>Birth date</td>
+        <td>Age</td>
+        <td>Award</td>
+        <td>User's image</td>
+    </tr>
+    @foreach (var user in Users2)
+    {
+        <tr>
+            <td>
+                <a name="Id-@user.Id">
+                    @user.Id
+                </a>
+                <form action="~/Pages/Users/Delete" method="post">
+                    <input type="hidden" name="id" value="@user.Id" />
+                    <button type="submit" class="btn btn-warning btn-sm">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </form>
+            </td>
+            <td>@user.Name</td>
+            <td>@user.BirthDate.ToShortDateString()</td>
+            <td>@userLogic.FindAge(user)</td>
+            <td>@user.Award <br /><a href="~/Pages/GetImage?Id=@(user.AwardImgId)&amp;mode=award" target="_blank"><img class="avatar" title="@user.Award" alt="@user.Award" src="~/Pages/GetImage?Id=@(user.AwardImgId)&amp;mode=award" /></a></td>
+            <td><a href="~/Pages/GetImage?Id=@user.ImageId" target="_blank"><img class="avatar" src="~/Pages/GetImage?Id=@user.ImageId" /></a></td>
+        </tr>
+    }
+</table>
+
+<br />

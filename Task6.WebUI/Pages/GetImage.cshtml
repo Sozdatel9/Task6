@@ -1,0 +1,23 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+@{
+    ImageViewer v = new ImageViewer();
+    var stringId = Request["id"];
+    var mode = Request["mode"];
+    int id;
+    if (string.IsNullOrWhiteSpace(stringId) || !int.TryParse(stringId, out id))
+    {
+        Response.SetStatus(HttpStatusCode.BadRequest);
+        return;
+    }
+
+    var image = v.View(id, mode);
+    if (image == null)
+    {
+        Response.SetStatus(HttpStatusCode.NotFound);
+        return;
+    }
+
+    Response.WriteBinary(image.Content, image.ContentType);
+    Response.AddHeader("Content-Disposition", $"inline; filename=\"{image.FileName}\"");
+}

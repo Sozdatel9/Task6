@@ -1,0 +1,9 @@
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\bin\Debug\Task6.XMLDal.dll
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\bin\Debug\Task6.XMLDal.pdb
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\bin\Debug\Task6.DalContracts.dll
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\bin\Debug\Task6.Entities.dll
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\bin\Debug\Task6.DalContracts.pdb
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\bin\Debug\Task6.Entities.pdb
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\obj\Debug\Task6.DBDal.csprojResolveAssemblyReference.cache
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\obj\Debug\Task6.XMLDal.dll
+C:\progr\csharp\Epam_edu\Projects\Task6\Task6.XMLDal\obj\Debug\Task6.XMLDal.pdb

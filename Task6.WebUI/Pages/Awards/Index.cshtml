@@ -1,0 +1,52 @@
+﻿@using Task6.Entities;
+@using Task6.Logic;
+
+@{
+    Page.Title = "Awards Index";
+    Page.Description = "View all awards";
+    UserLogic userLogic = new UserLogic();
+    AwardLogic awardLogic = new AwardLogic();
+    awardLogic.uLogic = userLogic;
+    IEnumerable<Award> Awards = awardLogic.GetAll();
+}
+@if (!User.Identity.IsAuthenticated)
+{
+    Response.SetStatus(HttpStatusCode.Unauthorized);
+    return;
+}
+@if (!User.IsInRole("admin"))
+{
+    Response.SetStatus(HttpStatusCode.Forbidden);
+    return;
+}
+<table class="table table-default">
+    <tr>
+        <td colspan=3 class="title title-default">
+            Awards List
+        </td>
+    </tr>
+    <tr class="table-top">
+        <td>Id</td>
+        <td>Title</td>
+        <td>Award image</td>
+    </tr>
+
+    @foreach (var award in Awards)
+    {
+        <tr>
+            <td><a name="Id-@award.Id">
+                @award.Id</a>
+                <form action="~/Pages/Awards/Delete" method="post">
+                    <input type="hidden" name="id" value="@award.Id" />
+                    <button type="submit" class="btn btn-warning btn-sm">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </form>
+            </td>
+            <td>@award.Title</td>
+            <td><a href="~/Pages/GetImage?Id=@(award.ImageId)&amp;mode=award" target="_blank"><img class="avatar" src="~/Pages/GetImage?Id=@award.ImageId&amp;mode=award" /></a></td>
+        </tr>
+    }
+</table>
+
+<br />
