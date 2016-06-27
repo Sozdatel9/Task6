@@ -1,5 +1,6 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
 @{
     if (!User.Identity.IsAuthenticated)
     {
@@ -10,8 +11,6 @@
 @{
     Page.Title = "Edit account " + User.Identity.Name;
     Page.Description = "Edit account " + User.Identity.Name;
-    AccountLogic accountLogic = new AccountLogic();
-    IEnumerable<Account> Accounts = accountLogic.GetAll();
 
     if (IsPost)
     {
@@ -24,7 +23,7 @@
             Response.SetStatus(HttpStatusCode.BadRequest);
             return;
         }
-        accountLogic.Update(Id, userName, userPassword);
+        staticClasses.accountLogic.Update(Id, userName, userPassword);
         Response.Redirect("~/");
         return;
     }
@@ -37,7 +36,7 @@
         <span class="text-default">Name (or nickname):</span>
         <input name="name" value="@User.Identity.Name" />
     </label>
-    <input name="id" value="@accountLogic.getIdByUserName(User.Identity.Name)" type="hidden" />
+    <input name="id" value="@staticClasses.accountLogic.getIdByUserName(User.Identity.Name)" type="hidden" />
     <div>&nbsp;</div>
     <label for="password">
         <span class="text-default">New Password:</span>
@@ -68,7 +67,7 @@
             <td>Name</td>
             <td colspan=2 align="center">Permissions</td>    
         </tr>
-        @foreach (var account in Accounts)
+        @foreach (var account in staticClasses.Accounts)
         {
             if ((account.Name != User.Identity.Name) && (account.Id != 1))
             {

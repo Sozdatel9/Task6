@@ -1,5 +1,7 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
+
 @if (!User.Identity.IsAuthenticated)
 {
     Response.SetStatus(HttpStatusCode.Unauthorized);
@@ -14,9 +16,6 @@
 @{
     Page.Title = "Delete awards";
     Page.Description = "Delete selected award";
-    UserLogic userLogic = new UserLogic();
-    AwardLogic awardLogic = new AwardLogic();
-    awardLogic.uLogic = userLogic;
 
     if (IsPost)
     {
@@ -27,7 +26,7 @@
             return;
         }
 
-        awardLogic.Delete(int.Parse(awardId));
+        staticClasses.awardLogic.Delete(int.Parse(awardId));
         Response.Redirect("~/Pages/Awards/");
         return;
     }

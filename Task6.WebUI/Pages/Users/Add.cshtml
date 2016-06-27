@@ -1,6 +1,8 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
 @using System.Globalization;
+
 @if (!User.Identity.IsAuthenticated)
 {
     Response.SetStatus(HttpStatusCode.Unauthorized);
@@ -15,9 +17,6 @@
 @{
     Page.Title = "Add users";
     Page.Description = "Add new user";
-    UserLogic userLogic = new UserLogic();
-    AwardLogic awardLogic = new AwardLogic();
-    awardLogic.uLogic = userLogic;
 
     if (IsPost)
     {
@@ -43,11 +42,11 @@
 
         if (string.IsNullOrEmpty(img.FileName))
         {
-            newId = userLogic.Add(userName, birthDate);
+            newId = staticClasses.userLogic.Add(userName, birthDate);
         }
         else
         {
-            newId = userLogic.Add(userName, birthDate, newImg);
+            newId = staticClasses.userLogic.Add(userName, birthDate, newImg);
 
         }
         Response.Redirect("~/Pages/Users/#Id-"+newId+"");

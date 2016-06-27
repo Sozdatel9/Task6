@@ -1,14 +1,11 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
 
 @{
     Page.Title = "Users Index";
     Page.Description = "View all users and awarded users";
-    UserLogic userLogic = new UserLogic();
-    AwardLogic awardLogic = new AwardLogic();
-    awardLogic.uLogic = userLogic;
-    IEnumerable<User> Users = userLogic.GetAllWithoutAwards();
-    IEnumerable<User> Users2 = userLogic.GetOnlyAwardedUsers();
+
     bool isAuthUser = false;
     if (User.Identity.IsAuthenticated) { isAuthUser = true; }
 }
@@ -27,7 +24,7 @@
             <td>Age</td>
             <td>User's image</td>
         </tr>
-@foreach (var user in Users)
+@foreach (var user in staticClasses.Users)
 {
         <tr>
             <td><a name="Id-@user.Id">
@@ -41,7 +38,7 @@
             </td>
             <td>@user.Name</td>
             <td>@user.BirthDate.ToShortDateString()</td>
-            <td>@userLogic.FindAge(user)</td>
+            <td>@staticClasses.userLogic.FindAge(user)</td>
             <td><a href="~/Pages/GetImage?Id=@user.ImageId" target="_blank"><img class="avatar" src="~/Pages/GetImage?Id=@user.ImageId" /></a></td>
         </tr>
         }
@@ -64,7 +61,7 @@
         <td>Award</td>
         <td>User's image</td>
     </tr>
-    @foreach (var user in Users2)
+    @foreach (var user in staticClasses.Users2)
     {
         <tr>
             <td><a name="Id-@user.Id">
@@ -78,7 +75,7 @@
             </td>
             <td>@user.Name</td>
             <td>@user.BirthDate.ToShortDateString()</td>
-            <td>@userLogic.FindAge(user)</td>
+            <td>@staticClasses.userLogic.FindAge(user)</td>
             <td>@user.Award <br /><a href="~/Pages/GetImage?Id=@(user.AwardImgId)&amp;mode=award" target="_blank"><img class="avatar" title="@user.Award" alt="@user.Award" src="~/Pages/GetImage?Id=@(user.AwardImgId)&amp;mode=award" /></a></td>
             <td><a href="~/Pages/GetImage?Id=@user.ImageId" target="_blank"><img class="avatar" src="~/Pages/GetImage?Id=@user.ImageId" /></a></td>
         </tr>

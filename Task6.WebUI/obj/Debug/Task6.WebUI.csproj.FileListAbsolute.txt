@@ -47,3 +47,5 @@ C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.WebUI\bin\Task6.Logic.pdb
 C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.WebUI\bin\Task6.BllContracts.pdb
 C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.WebUI\bin\Task6.DalContracts.pdb
 C:\Progr\CSharp\EPAM_Edu\Projects\Task6\Task6.WebUI\bin\Task6.XMLDal.pdb
+C:\progr\CSharp\EPAM_Edu\Projects\Task6\Task6.WebUI\bin\Task6.StaticClassess.dll
+C:\progr\CSharp\EPAM_Edu\Projects\Task6\Task6.WebUI\bin\Task6.StaticClassess.pdb

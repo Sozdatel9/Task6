@@ -158,6 +158,10 @@
       <Project>{2dc455a6-3407-43f8-b084-5a08a9978114}</Project>
       <Name>Task6.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Task6.StaticClassess\Task6.StaticClasses.csproj">
+      <Project>{84c0c691-70b8-4f06-be85-9f9f94520455}</Project>
+      <Name>Task6.StaticClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

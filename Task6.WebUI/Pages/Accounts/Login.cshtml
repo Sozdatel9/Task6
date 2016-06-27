@@ -1,5 +1,6 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
 @{
     if (User.Identity.IsAuthenticated)
     {
@@ -12,13 +13,11 @@
     Page.Description = "User authorization page";
     if (IsPost)
     {
-        AccountLogic acc = new AccountLogic();
-       
         var userName = Request["name"];
         var password = Request["password"];
 
 
-        if (acc.CanLogin(userName, password))
+        if (staticClasses.accountLogic.CanLogin(userName, password))
         {
             FormsAuthentication.SetAuthCookie(userName, createPersistentCookie: false);
 

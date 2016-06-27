@@ -1,5 +1,7 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
+
 @if (!User.Identity.IsAuthenticated)
 {
     Response.SetStatus(HttpStatusCode.Unauthorized);
@@ -13,9 +15,6 @@
 @{
     Page.Title = "Add awards";
     Page.Description = "Add new award";
-    UserLogic userLogic = new UserLogic();
-    AwardLogic awardLogic = new AwardLogic();
-    awardLogic.uLogic = userLogic;
 
     if (IsPost)
     {
@@ -38,11 +37,11 @@
 
         if (string.IsNullOrEmpty(img.FileName))
         {
-            newId = awardLogic.Add(awardTitle);
+            newId = staticClasses.awardLogic.Add(awardTitle);
         }
         else
         {
-            newId = awardLogic.Add(awardTitle, newImg);
+            newId = staticClasses.awardLogic.Add(awardTitle, newImg);
         }
 
         Response.Redirect("~/Pages/Awards/#Id-" + newId + "");

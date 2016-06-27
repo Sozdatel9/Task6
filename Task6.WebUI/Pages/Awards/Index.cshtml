@@ -1,13 +1,10 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
 
 @{
     Page.Title = "Awards Index";
     Page.Description = "View all awards";
-    UserLogic userLogic = new UserLogic();
-    AwardLogic awardLogic = new AwardLogic();
-    awardLogic.uLogic = userLogic;
-    IEnumerable<Award> Awards = awardLogic.GetAll();
 }
 @if (!User.Identity.IsAuthenticated)
 {
@@ -31,7 +28,7 @@
         <td>Award image</td>
     </tr>
 
-    @foreach (var award in Awards)
+    @foreach (var award in staticClasses.Awards)
     {
         <tr>
             <td><a name="Id-@award.Id">

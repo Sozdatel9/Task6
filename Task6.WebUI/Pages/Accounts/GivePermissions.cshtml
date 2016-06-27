@@ -1,5 +1,7 @@
 ﻿@using Task6.Entities;
 @using Task6.Logic;
+@using Task6.StaticClasses;
+
 @if (!User.Identity.IsAuthenticated)
 {
     Response.SetStatus(HttpStatusCode.Unauthorized);
@@ -14,7 +16,6 @@
 @{
     Page.Title = "Deprive admin rights";
     Page.Description = "Deprive admin rights a selected acounts";
-    AccountLogic accountLogic = new AccountLogic();
 
     if (IsPost)
     {
@@ -25,7 +26,7 @@
             return;
         }
 
-        accountLogic.GivePermissions(int.Parse(accountId));
+        staticClasses.accountLogic.GivePermissions(int.Parse(accountId));
         Response.Redirect("~/Pages/Accounts/#Id-" + accountId);
         return;
     }
